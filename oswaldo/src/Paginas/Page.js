@@ -10,13 +10,18 @@ export default class Principal extends React.Component{
     async componentDidMount(){
         await this.fetchPersonajes()
     }
-    fetchPersonajes=async()=>{
+    fetchPersonajes=async ()=>{
+        try{
         let res=await fetch('http://localhost:8000/api/info')
         let data=await res.json()
         console.log(data)
         this.setState({
             data
         })
+        }
+       catch(error){
+        console.error("El error es:", error)
+       }
     }
     render(){
         return(
